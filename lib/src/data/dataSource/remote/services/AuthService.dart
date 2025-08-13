@@ -78,9 +78,9 @@ class AuthService {
 
         print('CUARTO PASO: ${data}');
 
-        // return Error(listToString(data['error']));
+        return Error(listToString(data['error']));
         // return Error(data['message']);
-        return Error(data['error']);
+        // return Error(data['error']);
       }
     } catch (error) {
       // print('ERROR: $error');

@@ -1,12 +1,13 @@
 import 'package:app_sistema_de_patrullaje/src/domain/utils/Resource.dart';
 import 'package:app_sistema_de_patrullaje/src/presentation/pages/auth/login/LoginContent.dart';
-import 'package:app_sistema_de_patrullaje/src/presentation/pages/auth/login/LoginResponse.dart';
+import 'package:app_sistema_de_patrullaje/src/presentation/pages/auth/login/bloc/LoginEvent.dart';
+import 'package:app_sistema_de_patrullaje/src/presentation/pages/auth/login/bloc/LoginState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 // Bloc cubit
-import 'package:app_sistema_de_patrullaje/src/presentation/pages/auth/login/LoginBlocCubit.dart';
+import 'package:app_sistema_de_patrullaje/src/presentation/pages/auth/login/bloc/LoginBloc.dart';
 
 // Router
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,7 @@ import 'package:app_sistema_de_patrullaje/src/presentation/widgets/default_textf
 
 class LoginPage extends StatefulWidget {
   static const name = 'login-page';
+
   const LoginPage({super.key});
 
   @override
@@ -24,30 +26,53 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // Instancias
-  LoginBlocCubit? _loginBlocCubit;
+  LoginBloc? _bloc;
 
   @override
   void initState() {
     // SE EJECUTA UNA SOLA VEZ CUANDO SE CARGA LA PANTALLA
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      _loginBlocCubit?.dispose();
-    });
+    // WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    //   _loginBloc?.dispose();
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
-    _loginBlocCubit = BlocProvider.of<LoginBlocCubit>(context, listen: false);
+    _bloc = BlocProvider.of<LoginBloc>(context);
 
     return Scaffold(
       body: Container(
         width: double.infinity,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            LoginResponse(_loginBlocCubit),
-            LoginContent(_loginBlocCubit),
-          ],
+        child: BlocListener<LoginBloc, LoginState>(
+          listener: (context, state) {
+            final responseState = state.response;
+            if (responseState is Error) {
+              Fluttertoast.showToast(
+                msg: responseState.error,
+                toastLength: Toast.LENGTH_LONG,
+              );
+            } else if (responseState is Success) {
+              _bloc?.add(LoginFormReset());
+              Fluttertoast.showToast(
+                msg: "Login Exitoso",
+                toastLength: Toast.LENGTH_LONG,
+              );
+            }
+          },
+          child: BlocBuilder<LoginBloc, LoginState>(
+            builder: (context, state) {
+              final responseState = state.response;
+              if (responseState is Loading) {
+                return Stack(
+                  children: [
+                    LoginContent(_bloc, state),
+                    Center(child: CircularProgressIndicator())],
+                );
+              }
+              return LoginContent(_bloc, state);
+            },
+          ),
         ),
       ),
     );

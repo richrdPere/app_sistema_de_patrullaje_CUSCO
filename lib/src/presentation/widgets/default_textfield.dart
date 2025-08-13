@@ -5,24 +5,27 @@ class DefaultTextField extends StatelessWidget {
   String? errorText;
   IconData icon;
   Function(String text) onChanged;
+  String? Function(String?)? validator;
   bool obscureText;
 
   DefaultTextField({
-    super.key,
+    Key? key,
     required this.label,
     required this.icon,
     required this.onChanged,
-    this.errorText = '',
-    this.obscureText = false
-  });
+    this.errorText,
+    this.validator,
+    this.obscureText = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       obscureText: obscureText,
       onChanged: (text) {
         onChanged(text);
       },
+      validator: validator,
       decoration: InputDecoration(
         label: Text(label, style: TextStyle(color: Colors.white)),
         errorText: errorText,
@@ -34,7 +37,7 @@ class DefaultTextField extends StatelessWidget {
           borderSide: BorderSide(color: Colors.white),
         ),
       ),
-      style: TextStyle(color: Colors.white)
+      style: TextStyle(color: Colors.white),
     );
   }
 }

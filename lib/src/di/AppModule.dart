@@ -3,6 +3,8 @@ import 'package:app_sistema_de_patrullaje/src/domain/usesCases/auth/LoginUseCase
 import 'package:app_sistema_de_patrullaje/src/domain/usesCases/auth/RegisterUseCase.dart';
 import 'package:injectable/injectable.dart';
 
+import 'package:app_sistema_de_patrullaje/src/data/dataSource/local/SharedPref.dart';
+
 // Data y Domain
 import 'package:app_sistema_de_patrullaje/src/data/repositories/AuthRepositoryImpl.dart';
 import 'package:app_sistema_de_patrullaje/src/domain/repositories/AuthRepository.dart';
@@ -12,6 +14,9 @@ import 'package:app_sistema_de_patrullaje/src/data/dataSource/remote/services/Au
 
 @module
 abstract class AppModule {
+  @injectable
+  // SharedPref get SharedPref => SharedPref();
+
   @injectable
   AuthService get authService => AuthService();
 
