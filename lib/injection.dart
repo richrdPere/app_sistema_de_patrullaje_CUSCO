@@ -8,5 +8,5 @@ import 'package:app_sistema_de_patrullaje/injection.config.dart';
 final locator = GetIt.instance;
 
 @InjectableInit()
-Future<void> configureDependencies() async => await locator.init();
+Future<void> configureDependencies() async => locator.init();
 

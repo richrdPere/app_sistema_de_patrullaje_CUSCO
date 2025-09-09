@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 
 // Models
-import 'package:app_sistema_de_patrullaje/src/domain/models/AuthResponse.dart';
 import 'package:app_sistema_de_patrullaje/src/domain/utils/Resource.dart';
 
 // Utils

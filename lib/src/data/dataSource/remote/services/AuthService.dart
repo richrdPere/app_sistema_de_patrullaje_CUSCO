@@ -76,7 +76,7 @@ class AuthService {
         return Success(authResponse);
       } else {
 
-        print('CUARTO PASO: ${data}');
+        print('CUARTO PASO: $data');
 
         return Error(listToString(data['error']));
         // return Error(data['message']);

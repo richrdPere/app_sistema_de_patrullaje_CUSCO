@@ -1,15 +1,12 @@
 import 'package:app_sistema_de_patrullaje/src/domain/models/AuthResponse.dart';
-import 'package:app_sistema_de_patrullaje/src/domain/repositories/AuthRepository.dart';
 import 'package:app_sistema_de_patrullaje/src/domain/usesCases/auth/AuthUseCases.dart';
 import 'package:app_sistema_de_patrullaje/src/presentation/pages/auth/login/bloc/LoginEvent.dart';
 import 'package:app_sistema_de_patrullaje/src/presentation/utils/BlocFormItem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rxdart/rxdart.dart';
 
 // Services y Caso de uso
 // import 'package:app_sistema_de_patrullaje/src/data/dataSource/remote/services/AuthService.dart';
-import 'package:app_sistema_de_patrullaje/src/domain/usesCases/auth/LoginUseCase.dart';
 
 // Models
 import 'package:app_sistema_de_patrullaje/src/domain/utils/Resource.dart';

@@ -14,7 +14,7 @@ class DefaultButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: 55,
       // margin: EdgeInsets.only(left: 25, right: 25, top: 15),

@@ -9,14 +9,14 @@ class DefaultTextField extends StatelessWidget {
   bool obscureText;
 
   DefaultTextField({
-    Key? key,
+    super.key,
     required this.label,
     required this.icon,
     required this.onChanged,
     this.errorText,
     this.validator,
     this.obscureText = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

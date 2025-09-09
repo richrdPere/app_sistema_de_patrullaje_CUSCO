@@ -36,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _bloc = BlocProvider.of<RegisterBloc>(context);
 
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         //color: Colors.black,

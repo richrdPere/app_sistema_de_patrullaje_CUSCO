@@ -10,7 +10,7 @@ import 'package:app_sistema_de_patrullaje/src/domain/utils/Resource.dart';
 
 // @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
-  AuthService _authService;
+  final AuthService _authService;
 
   AuthRepositoryImpl(this._authService);
 

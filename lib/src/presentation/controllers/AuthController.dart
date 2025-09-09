@@ -26,7 +26,7 @@ class AuthController with ChangeNotifier {
   // final AuthService _authService = AuthService();
   // LoginUseCase _loginUseCase = LoginUseCase();
 
-  AuthUsesCases _authUsesCases;
+  final AuthUsesCases _authUsesCases;
 
   AuthController(this._authUsesCases);
 
@@ -59,7 +59,7 @@ class AuthController with ChangeNotifier {
         final userJson = jsonEncode(_sereno!.toJson()); // Usa el toJson() real
 
         print('=================================================');
-        print('Sereno DATA: ${userJson}');
+        print('Sereno DATA: $userJson');
         print('=================================================');
 
         await prefs.setString('sereno_data', userJson);

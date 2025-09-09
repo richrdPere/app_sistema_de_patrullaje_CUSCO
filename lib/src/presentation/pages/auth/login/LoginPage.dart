@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
     _bloc = BlocProvider.of<LoginBloc>(context);
 
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {

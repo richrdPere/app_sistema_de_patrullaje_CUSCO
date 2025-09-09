@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:app_sistema_de_patrullaje/src/presentation/pages/chats/ChatsScreen.dart';
 import 'package:app_sistema_de_patrullaje/src/presentation/pages/mapa/MapaScreen.dart';
 import 'package:app_sistema_de_patrullaje/src/presentation/pages/notificaciones/NotificacionesScreen.dart';
-import 'package:app_sistema_de_patrullaje/src/presentation/pages/perfil/PerfilScreen.dart';
 import 'package:app_sistema_de_patrullaje/src/presentation/pages/reporte_incidente/ReporteIncidenteScreen.dart';
 
+// Witgets
+import 'package:app_sistema_de_patrullaje/src/presentation/pages/principal/widgets/BuildModuloList.dart';
 
 class PrincipalScreen extends StatefulWidget {
   const PrincipalScreen({super.key});
@@ -14,6 +15,35 @@ class PrincipalScreen extends StatefulWidget {
 }
 
 class _PrincipalScreenState extends State<PrincipalScreen> {
+  // Module Options
+  final moduloOptions = [
+    ModuloOption(
+      title: "Ver\nTurno",
+      icon: Icons.shield_moon,
+      route: '/dashboard/ver_turno',
+      backgroundColor: Colors.green,
+    ),
+    ModuloOption(
+      title: "Formato Ocurrencia",
+      icon: Icons.assignment,
+      // route: '/dashboard/principal/formato_ocurrencia',
+      route: '/formato_ocurrencia',
+      backgroundColor: Colors.blue,
+    ),
+    ModuloOption(
+      title: "Estado\nVehiculo",
+      icon: Icons.report,
+      route: '/dashboard/reporte',
+      backgroundColor: Colors.orange,
+    ),
+    // ModuloOption(
+    //   title: "Chats",
+    //   icon: Icons.chat,
+    //   route: '/dashboard/chats',
+    //   backgroundColor: Colors.purple,
+    // ),
+  ];
+
   final int _currentIndex = 0;
 
   final List<Widget> _screens = [
@@ -39,26 +69,26 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Operaciones del Sereno",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: primaryColor,
-        actions: [
-          IconButton(
-            icon: CircleAvatar(
-              backgroundImage: NetworkImage("https://i.pravatar.cc/150?img=5"),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const PerfilScreen()),
-              );
-            },
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     "Operaciones del Sereno",
+      //     style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      //   ),
+      //   backgroundColor: primaryColor,
+      //   actions: [
+      //     IconButton(
+      //       icon: CircleAvatar(
+      //         backgroundImage: NetworkImage("https://i.pravatar.cc/150?img=5"),
+      //       ),
+      //       onPressed: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(builder: (context) => const PerfilScreen()),
+      //         );
+      //       },
+      //     ),
+      //   ],
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -66,7 +96,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
           children: [
             // Título - Resumen
             Text(
-              "Resumen del dia",
+              "Modulos Disponibles",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -76,33 +106,43 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
             const SizedBox(height: 10),
             // Cards del resumen
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 16,
-                children: const [
-                  SummaryCard(
-                    title: "Patrullas Activas",
-                    value: "12",
-                    icon: Icons.directions_walk,
-                  ),
-                  SummaryCard(
-                    title: "Incidentes Reportados",
-                    value: "5",
-                    icon: Icons.warning,
-                  ),
-                  SummaryCard(
-                    title: "Zonas Cubiertas",
-                    value: "8",
-                    icon: Icons.map,
-                  ),
-                  SummaryCard(
-                    title: "Alertas Recientes",
-                    value: "3",
-                    icon: Icons.notifications,
-                  ),
-                ],
+              child: Container(
+                color: Color.fromRGBO(241, 241, 241, 1),
+
+                // child: _buildMenuList(
+                //   context: context,
+                //   menuOptions: menuOptions,
+                //   size: size,
+                // ),
+                child: BuildModuloList(moduloOptions: moduloOptions),
               ),
+              // child: GridView.count(
+              //   crossAxisCount: 2,
+              //   crossAxisSpacing: 10,
+              //   mainAxisSpacing: 16,
+              //   children: const [
+              //     SummaryCard(
+              //       title: "Patrullas Activas",
+              //       value: "12",
+              //       icon: Icons.directions_walk,
+              //     ),
+              //     SummaryCard(
+              //       title: "Informe de Ocurrencias",
+              //       value: "5",
+              //       icon: Icons.warning,
+              //     ),
+              //     // SummaryCard(
+              //     //   title: "Zonas Cubiertas",
+              //     //   value: "8",
+              //     //   icon: Icons.map,
+              //     // ),
+              //     SummaryCard(
+              //       title: "Alertas Recientes",
+              //       value: "3",
+              //       icon: Icons.notifications,
+              //     ),
+              //   ],
+              // ),
             ),
             // Título - Novedades
             Text(

@@ -2,11 +2,9 @@ import 'package:app_sistema_de_patrullaje/src/presentation/pages/auth/register/b
 import 'package:app_sistema_de_patrullaje/src/presentation/utils/BlocFormItem.dart';
 import 'package:app_sistema_de_patrullaje/src/presentation/widgets/default_IconBack.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 // Router
-import 'package:go_router/go_router.dart';
 
 // Register Bloc cubit
 import 'package:app_sistema_de_patrullaje/src/presentation/pages/auth/register/bloc/RegisterBloc.dart';

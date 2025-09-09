@@ -3,7 +3,6 @@ import 'package:app_sistema_de_patrullaje/src/domain/usesCases/auth/LoginUseCase
 import 'package:app_sistema_de_patrullaje/src/domain/usesCases/auth/RegisterUseCase.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:app_sistema_de_patrullaje/src/data/dataSource/local/SharedPref.dart';
 
 // Data y Domain
 import 'package:app_sistema_de_patrullaje/src/data/repositories/AuthRepositoryImpl.dart';
